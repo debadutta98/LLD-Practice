@@ -23,4 +23,13 @@ func main() {
 	market := NewEUMarket(10)
 	market.GetInvoice().Print()
 	market.GetTaxSummary().Print()
+
+	zwave, err := GetHardWareFamily("zwave")
+	doorlock := zwave.GetSmartDoorLock()
+	doorlock.Lock()
+	if doorlock.GetLockState() != true {
+		panic("door must be locked")
+	} else {
+		fmt.Println("Door is locked")
+	}
 }
