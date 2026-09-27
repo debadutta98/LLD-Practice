@@ -57,4 +57,16 @@ func main() {
 	} else {
 		fmt.Print(report.Title())
 	}
+
+	orderA := NewMealBuilder(MainItem{Name: "Burger", Protein: "Chicken", Price: 8.99}).
+		WithSide(SideItem{Name: "Fries", Size: Large, Price: 3.49}).
+		WithDrink(Drink{Name: "Soda", Size: Medium, HasIce: true, Price: 2.10}).
+		Build()
+
+	orderB := NewMealBuilder(MainItem{Name: "Wrap", Protein: "Veggie", Price: 7.50}).
+		WithDessert(Dessert{Name: "Cookie", Price: 1.50}).
+		Build()
+
+	orderA.DisplayMealSummary()
+	orderB.DisplayMealSummary()
 }
