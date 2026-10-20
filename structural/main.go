@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	. "structural/adapter"
 	. "structural/bridge"
+	. "structural/decorator"
 )
 
 func main() {
@@ -23,4 +25,13 @@ func main() {
 	})
 
 	dailySummary.Notify()
+
+	// Decorator
+
+	expresso := NewEspresso()
+	milkExpresso := NewMilkDecorator(expresso)
+	mochaMilkExpresso := NewMochaDecorator(milkExpresso)
+	whipMochaMilkExpresso := NewWhipDecorator(mochaMilkExpresso)
+
+	fmt.Println(whipMochaMilkExpresso.GetDescription(), whipMochaMilkExpresso.GetCost())
 }
