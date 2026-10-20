@@ -34,4 +34,11 @@ func main() {
 	whipMochaMilkExpresso := NewWhipDecorator(mochaMilkExpresso)
 
 	fmt.Println(whipMochaMilkExpresso.GetDescription(), whipMochaMilkExpresso.GetCost())
+
+	emailNotifer := NewEmailNotifier("abc@email.com")
+	slackNotifer := NewSlackDecorator("#ask-me-anything")
+	slackNotifer.SetNotifer(emailNotifer)
+	//encryptionDecorator := NewEncryptionDecorator(slackNotifer)
+	timestampDecorator := NewTimestampDecorator(slackNotifer)
+	timestampDecorator.Send("Hello! How are you ? :>")
 }
