@@ -5,6 +5,7 @@ import (
 	. "structural/adapter"
 	. "structural/bridge"
 	. "structural/decorator"
+	. "structural/facade"
 )
 
 func main() {
@@ -27,7 +28,6 @@ func main() {
 	dailySummary.Notify()
 
 	// Decorator
-
 	expresso := NewEspresso()
 	milkExpresso := NewMilkDecorator(expresso)
 	mochaMilkExpresso := NewMochaDecorator(milkExpresso)
@@ -38,7 +38,13 @@ func main() {
 	emailNotifer := NewEmailNotifier("abc@email.com")
 	slackNotifer := NewSlackDecorator("#ask-me-anything")
 	slackNotifer.SetNotifer(emailNotifer)
-	//encryptionDecorator := NewEncryptionDecorator(slackNotifer)
 	timestampDecorator := NewTimestampDecorator(slackNotifer)
 	timestampDecorator.Send("Hello! How are you ? :>")
+
+	// Facade
+	ui := NewUnifiedInterface()
+	ui.WatchMovie()
+	ui.ListenToMusic()
+	ui.EndMovie()
+	ui.LeaveHome()
 }
