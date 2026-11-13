@@ -7,6 +7,7 @@ import (
 	. "structural/decorator"
 	. "structural/facade"
 	. "structural/flyweight"
+	. "structural/proxy"
 )
 
 func main() {
@@ -58,4 +59,12 @@ func main() {
 	editor.InsertCharacter('!', "Times New Roman", 14, "Red")
 
 	editor.RenderDocument()
+
+	filePath := "/secure/financial_report_Q4.pdf"
+	standardUser := User{Name: "Alice", Role: Standard}
+	proxyAlice := NewDocumentProxy(filePath, standardUser)
+	proxyAlice.DisplayReport()
+	adminUser := User{Name: "Bob", Role: Admin}
+	proxyBob := NewDocumentProxy(filePath, adminUser)
+	proxyBob.DisplayReport()
 }
