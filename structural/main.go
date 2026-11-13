@@ -6,6 +6,7 @@ import (
 	. "structural/bridge"
 	. "structural/decorator"
 	. "structural/facade"
+	. "structural/flyweight"
 )
 
 func main() {
@@ -47,4 +48,14 @@ func main() {
 	ui.ListenToMusic()
 	ui.EndMovie()
 	ui.LeaveHome()
+
+	// FlyWeight
+
+	editor := NewTextEditor()
+	editor.InsertCharacter('H', "Arial", 12, "Black")
+	editor.InsertCharacter('e', "Arial", 12, "Black")
+	editor.InsertCharacter('l', "Arial", 12, "Black")
+	editor.InsertCharacter('!', "Times New Roman", 14, "Red")
+
+	editor.RenderDocument()
 }
